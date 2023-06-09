@@ -61,6 +61,18 @@ const HomePage: React.FC = () => {
     }
   };
 
+  const getExchange = async () => {
+    const { data } = await axios.get("/api/exchange", {
+      params: {
+        payCurrency,
+        buyCurrency,
+      }
+    });
+
+    console.log(data)
+
+  };
+
   // const calculateBuyAmount = (currency: string) => {
   //   const currencyValue = data[currency]?.USD || 0;
   //   const result = payAmount * currencyValue;
@@ -72,6 +84,8 @@ const HomePage: React.FC = () => {
   if (error) {
     content = <p>{error}</p>;
   }
+
+ 
 
   return (
     <div className={classes.container}>
