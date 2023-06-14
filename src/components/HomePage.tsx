@@ -8,7 +8,7 @@ import axios from "axios";
 
 enum CurrencyType {
   PAY,
-  BUY
+  BUY,
 }
 
 const handleChange = (value: string): void => {
@@ -19,17 +19,19 @@ const HomePage: React.FC = () => {
   const [coins, setCoins] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<any>({});
-  const [payCurrency, setPayCurrency] = useState<string>('');
-  const [buyCurrency, setBuyCurrency] = useState<string>('');
+  const [payCurrency, setPayCurrency] = useState<string>("");
+  const [buyCurrency, setBuyCurrency] = useState<string>("");
   const [payAmount, setPayAmount] = useState<number>(0);
   const [buyAmount, setBuyAmount] = useState<number>(0);
 
   const fetchCoinsHandler = useCallback(async () => {
     setError(null);
     try {
-      const { data } = await axios.get("/api/rates");
-    
+      const response = await axios.get("/api/rates");
+      const { data } = response;
+
       setCoins(Object.keys(data));
+      setData(data);
     } catch (error: any) {
       setError(error.message || "Failed to fetch coins.");
     }
@@ -43,20 +45,26 @@ const HomePage: React.FC = () => {
     if (payCurrency && buyCurrency) {
       calculateBuyAmount();
     }
-  }, [payCurrency, buyCurrency, payAmount]);
+  }, [payCurrency, buyCurrency]);
 
   const calculateBuyAmount = () => {
-    const payCurrencyValue = data[payCurrency]?.USD || 0;
     const buyCurrencyValue = data[buyCurrency]?.USD || 0;
-    const result = (payAmount * buyCurrencyValue) / payCurrencyValue;
-    setBuyAmount(result);}
+    const payCurrencyValue = data[payCurrency]?.USD || 0;
+
+    console.log("payCurrencyValue:", payCurrencyValue);
+    console.log("buyCurrencyValue:", buyCurrencyValue);
+    console.log("payAmount:", payAmount);
+
+    const result = (payAmount * payCurrencyValue) / buyCurrencyValue;
+    console.log("result:", result);
+    setBuyAmount(result);
+  };
 
   const handleSelectChange = (value: string, inputType: CurrencyType) => {
-    
     if (inputType === CurrencyType.PAY) {
       setPayCurrency(value);
       // calculateBuyAmount(value);
-    }else if (inputType === CurrencyType.BUY){
+    } else if (inputType === CurrencyType.BUY) {
       setBuyCurrency(value);
     }
   };
@@ -66,33 +74,31 @@ const HomePage: React.FC = () => {
       params: {
         payCurrency,
         buyCurrency,
-      }
+      },
     });
 
-    console.log(data)
-
+    console.log(data);
   };
 
-  // const calculateBuyAmount = (currency: string) => {
-  //   const currencyValue = data[currency]?.USD || 0;
-  //   const result = payAmount * currencyValue;
-  //   setBuyAmount(result);
-  // };
+  useEffect(() => {
+    getExchange();
+  }, []);
 
   let content: JSX.Element | null = null;
 
   if (error) {
     content = <p>{error}</p>;
   }
-
- 
-
   return (
     <div className={classes.container}>
       <NavBar />
       <div className={classes.backCard}></div>
       <p className={classes.p1}>
-        Buy Bitcoin, Ethereum, Litecoin and other crypto online
+        Buy Bitcoin,{" "}
+        <span className={classes.whitetitle}>
+          Ethereum, Litecoin and other crypto
+        </span>{" "}
+        online
       </p>
       <p className={classes.p2}>
         Why bother going through complicated exchanges? Buy cryptocurrency with
@@ -111,7 +117,7 @@ const HomePage: React.FC = () => {
       <div className={classes.pay1}>
         <Input
           placeholder="Pay"
-          value={payAmount}
+          // value={payAmount}
           onChange={(e) => setPayAmount(Number(e.target.value))}
         />
         <StyledSelect
@@ -127,7 +133,11 @@ const HomePage: React.FC = () => {
         />
       </div>
       <div className={classes.pay2}>
-        <Input placeholder="Buy" value={buyAmount} disabled />
+        <Input
+          placeholder="Buy"
+          // value={buyAmount}
+          disabled
+        />
         <StyledSelect
           defaultValue=""
           onChange={(value) => handleSelectChange(value, CurrencyType.BUY)}
@@ -155,7 +165,7 @@ const HomePage: React.FC = () => {
           ]}
         />
       </div>
-      <button className={classes.button}>Buy</button>
+      <button className={classes.button}>Buy {buyCurrency}</button>
     </div>
   );
 };
@@ -166,6 +176,12 @@ const StyledSelect = styled(Select<string>)`
   &.ant-select-single:not(.ant-select-customize-input) {
     .ant-select-selector {
       height: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center
     }
   }
 `;
@@ -177,6 +193,13 @@ const StyledSelectPayment = styled(Select<string>)`
   &.ant-select-single:not(.ant-select-customize-input) {
     .ant-select-selector {
       height: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center
+    }
     }
   }
 `;

@@ -5,28 +5,32 @@
   }
   
   .backCard {
-    position: absolute;
-    height: 900.46px;
+    position: relative;
+    height: 800px;
+    width: 1595px;
     left: 15.03%;
-    right: 0.6%;
-    top: 60px;
+    top: 45px;
     background: #5022ed;
     transform: matrix(1, -0.04, -0.04, -1, 0, 0);
     border-radius: 40px;
   }
   
-  .p1 {
-    position: absolute;
+  .p1{
+    position: relative;
     width: 625px;
     height: 198px;
-    left: 539px;
-    top: 248px;
-    font-family: "Roboto";
+    left: 517px;
+    top: -580px;
+    font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 60px;
+    font-size: 55px;
     line-height: 66px;
     color: #16dfb5;
+  }
+
+  .whitetitle {
+    color: white;
   }
   
   .p2 {
@@ -35,10 +39,10 @@
     height: 188px;
     left: 539px;
     top: 486px;
-    font-family: "Roboto";
+    font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 23px;
     line-height: 31px;
     color: #ffffff;
   }
@@ -49,7 +53,7 @@
     height: 23px;
     left: 1405px;
     top: 496px;
-    font-family: "Roboto";
+    font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
@@ -63,7 +67,7 @@
     height: 21px;
     left: 539px;
     top: 716px;
-    font-family: "Roboto";
+    font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -143,11 +147,11 @@
     height: 48px;
     left: 1405px;
     top: 692px;
-    background: #b5b5b5;
-    border: 1px solid #a9a7a7;
+    background: #16dfb5;
+    border: 1px solid #16dfb5;
     box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
     border-radius: 5px 50px 50px 20px;
-    font-family: "Roboto";
+    font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
@@ -156,134 +160,33 @@
   }
   
   .button:hover {
-    background: #9c9b9b;
+    background: #12b390;
     font-size: 18px;
   }
   
-  @media (max-width: 1200px) {
+  @media only screen and (max-width: 461px){
     .backCard {
-      left: 5%;
-      right: 5%;
+      position: relative;
+      height: 3600px;
+      width: 2000px;
+      left: -7%;
+      top: 30px;
+      background: #5022ed;
+      transform: matrix(1, -0.04, -0.04, -1, 0, 0);
+      border-radius: 40px;
     }
-  
-    .p1 {
-      width: 100%;
-      font-size: 40px;
-      line-height: 44px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-    }
-  
-    .p2 {
-      width: 100%;
-      font-size: 20px;
-      line-height: 26px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      top: 420px;
-    }
-  
-    .p3 {
-      left: 50%;
-      transform: translateX(-50%);
-      top: 500px;
-      text-align: center;
-    }
-  
-    .li {
-      width: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 650px;
-      text-align: center;
-    }
-  
-    .card2,
-    .card1 {
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-    }
-  
-    .pay1,
-    .pay2,
-    .transfer {
-      width: 90%;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  
-    .button {
-      width: 90%;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 800px;
+
+    .p1{
+      position: relative;
+      width: 625px;
+      height: 198px;
+      left: 517px;
+      top: -2480px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 80px;
+      line-height: 66px;
+      color: #16dfb5;
     }
   }
-  
-  @media (max-width: 768px) {
-    .container {
-      padding: 10px;
-    }
-  
-    .backCard {
-      height: 500px;
-      top: 40px;
-    }
-  
-    .p1 {
-      font-size: 30px;
-      line-height: 34px;
-      top: 150px;
-    }
-  
-    .p2 {
-      font-size: 16px;
-      line-height: 20px;
-      top: 320px;
-      width: 80%;
-    }
-  
-    .p3 {
-      top: 850px;
-    }
-  
-    .li {
-      font-size: 14px;
-      line-height: 16px;
-      top: 480px;
-    }
-  
-    .card1 {
-      width: 80%;
-      top: 600px;
-    }
-
-    .card2 {
-        width: 82%;
-        top: 610px;
-    }
-  
-    .pay1,
-    .pay2,
-    .transfer {
-      width: 70%;
-      top: 930px;
-    }
-
-    .pay1 {
-        top: 680px;
-    }
-
-    .pay2 {
-        top: 780px;
-    }
-  
-    .button {
-      width: 75%;
-      top: 1050px;
-    }
-  }
-  
