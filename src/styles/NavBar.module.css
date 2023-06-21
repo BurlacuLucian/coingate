@@ -1,7 +1,6 @@
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
+  align-items: baseline;
   width: 100%;
   height: 6.3rem;
   background: #ffffff;
@@ -10,12 +9,16 @@
   z-index: 1;
 }
 
+.navBox {
+  display: flex;
+}
+
 .logo {
-  position: absolute;
-  width: 157px;
+  position: relative;
+  width: 35%;
   height: 35px;
   left: 45px;
-  top: 28px;
+  top: 12px;
   cursor: pointer;
 }
 
@@ -32,11 +35,11 @@
 }
 
 .li1 {
-  position: absolute;
-  width: 72px;
+  position: relative;
+  width: 100%;
   height: 21px;
-  left: 270px;
-  top: 40px;
+  left: 170px;
+  top: 2px;
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -46,11 +49,11 @@
 }
 
 .li2 {
-  position: absolute;
-  width: 84px;
+  position: relative;
+  width: 100%;
   height: 21px;
-  left: 427px;
-  top: 40px;
+  left: 300px;
+  top: 2px;
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -60,11 +63,11 @@
 }
 
 .li3 {
-  position: absolute;
-  width: 103px;
+  position: relative;
+  width: 100%;
   height: 21px;
-  left: 596px;
-  top: 40px;
+  left: 430px;
+  top: 2px;
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -74,15 +77,15 @@
 }
 
 .li4 {
-  position: absolute;
+  position: relative;
   /* width: 49px;
   height: 32px;
   left: 2074px;
   top: 35px; */
-  width: 49px;
+  width: 100%;
   height: 32px;
-  left: 1600px;
-  top: 35px;
+  left: 1100px;
+  top: 2px;
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -124,3 +127,5 @@
 .li4:hover {
   color: #03b58f;
 }
+
+

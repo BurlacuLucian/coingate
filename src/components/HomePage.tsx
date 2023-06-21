@@ -92,80 +92,86 @@ const HomePage: React.FC = () => {
   return (
     <div className={classes.container}>
       <NavBar />
-      <div className={classes.backCard}></div>
-      <p className={classes.p1}>
-        Buy Bitcoin,{" "}
-        <span className={classes.whitetitle}>
-          Ethereum, Litecoin and other crypto
-        </span>{" "}
-        online
-      </p>
-      <p className={classes.p2}>
-        Why bother going through complicated exchanges? Buy cryptocurrency with
-        top payment methods like SEPA bank transfer, Credit and Debit Card,
-        Apple Pay, Mobile balance or Klarna. You can buy Bitcoin, Ethereum or
-        any other popular crypto directly to your personal wallet without making
-        any initial deposits. It's as easy as it gets!
-      </p>
-      <div>
-        <Link className={classes.li} href="">
-          Start now
-        </Link>
+      <div className={classes.backCard}>
+        <div className={classes.box1}>
+          <p className={classes.p1}>
+            Buy Bitcoin,{" "}
+            <span className={classes.whitetitle}>
+              Ethereum, Litecoin and other crypto
+            </span>{" "}
+            online
+          </p>
+          <p className={classes.p2}>
+            Why bother going through complicated exchanges? Buy cryptocurrency
+            with top payment methods like SEPA bank transfer, Credit and Debit
+            Card, Apple Pay, Mobile balance or Klarna. You can buy Bitcoin,
+            Ethereum or any other popular crypto directly to your personal
+            wallet without making any initial deposits. It's as easy as it gets!
+          </p>
+          <Link className={classes.li} href="">
+            Start now
+          </Link>
+        </div>
+
+        <div className={classes.box2}>
+          <div className={classes.card2}></div>
+          <div className={classes.card1}>
+            <div className={classes.pay1}>
+              <Input
+                placeholder="Pay"
+                // value={payAmount}
+                onChange={(e) => setPayAmount(Number(e.target.value))}
+              />
+              <StyledSelect
+                defaultValue=""
+                onChange={(value) =>
+                  handleSelectChange(value, CurrencyType.PAY)
+                }
+                options={[
+                  { value: "", label: "" },
+                  ...coins.map((coin) => ({
+                    value: coin,
+                    label: coin,
+                  })),
+                ]}
+              />
+            </div>
+            <div className={classes.pay2}>
+              <Input placeholder="Buy" value={buyAmount} disabled />
+              <StyledSelect
+                defaultValue=""
+                onChange={(value) =>
+                  handleSelectChange(value, CurrencyType.BUY)
+                }
+                options={[
+                  { value: "", label: "" },
+                  ...coins.map((coin) => ({
+                    value: coin,
+                    label: coin,
+                  })),
+                ]}
+              />
+            </div>
+            <p className={classes.p3}>Payment method</p>
+
+            <div className={classes.transfer}>
+              <StyledSelectPayment
+                defaultValue=""
+                onChange={handleChange}
+                options={[
+                  { value: "", label: "" },
+                  { value: "sepa", label: "SEPA bank transfer" },
+                  { value: "creditdebit", label: "Credit and Debit Card" },
+                  { value: "apple", label: "Apple Pay" },
+                  { value: "mobile", label: "Mobile balance" },
+                  { value: "klarna", label: "Klarna" },
+                ]}
+              />
+            </div>
+            <button className={classes.button}>Buy {buyCurrency}</button>
+          </div>
+        </div>
       </div>
-      <div className={classes.card2}></div>
-      <div className={classes.card1}></div>
-      <div className={classes.pay1}>
-        <Input
-          placeholder="Pay"
-          // value={payAmount}
-          onChange={(e) => setPayAmount(Number(e.target.value))}
-        />
-        <StyledSelect
-          defaultValue=""
-          onChange={(value) => handleSelectChange(value, CurrencyType.PAY)}
-          options={[
-            { value: "", label: "" },
-            ...coins.map((coin) => ({
-              value: coin,
-              label: coin,
-            })),
-          ]}
-        />
-      </div>
-      <div className={classes.pay2}>
-        <Input
-          placeholder="Buy"
-          // value={buyAmount}
-          disabled
-        />
-        <StyledSelect
-          defaultValue=""
-          onChange={(value) => handleSelectChange(value, CurrencyType.BUY)}
-          options={[
-            { value: "", label: "" },
-            ...coins.map((coin) => ({
-              value: coin,
-              label: coin,
-            })),
-          ]}
-        />
-      </div>
-      <p className={classes.p3}>Payment method</p>
-      <div className={classes.transfer}>
-        <StyledSelectPayment
-          defaultValue=""
-          onChange={handleChange}
-          options={[
-            { value: "", label: "" },
-            { value: "sepa", label: "SEPA bank transfer" },
-            { value: "creditdebit", label: "Credit and Debit Card" },
-            { value: "apple", label: "Apple Pay" },
-            { value: "mobile", label: "Mobile balance" },
-            { value: "klarna", label: "Klarna" },
-          ]}
-        />
-      </div>
-      <button className={classes.button}>Buy {buyCurrency}</button>
     </div>
   );
 };
@@ -181,7 +187,7 @@ const StyledSelect = styled(Select<string>)`
       justify-content: flex-start;
       flex-direction: row;
       flex-wrap: nowrap;
-      align-items: center
+      align-items: center;
     }
   }
 `;
