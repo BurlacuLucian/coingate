@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, Suspense } from "react";
 import NavBar from "./NavBar";
 import classes from "../styles/HomePage.module.css";
 import Link from "next/link";
@@ -89,6 +89,7 @@ const HomePage: React.FC = () => {
   if (error) {
     content = <p>{error}</p>;
   }
+
   return (
     <div className={classes.container}>
       <NavBar />
@@ -108,7 +109,7 @@ const HomePage: React.FC = () => {
             Ethereum or any other popular crypto directly to your personal
             wallet without making any initial deposits. It's as easy as it gets!
           </p>
-          <Link className={classes.li} href="">
+          <Link onClick={() => alert('You clicked start!')} className={classes.li} href="">
             Start now
           </Link>
         </div>

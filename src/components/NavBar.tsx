@@ -115,6 +115,7 @@ const StyledDrawer = styled(Drawer)`
       align-items: center;
       line-height: 90px;
     }
+   
   }
 `;
 
